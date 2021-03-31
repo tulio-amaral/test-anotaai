@@ -59,7 +59,7 @@ Base URL for this project is **http://localhost:3333**. So every request should 
   "title": "Some title",
 }
 ```
--To associate a category to a product, send a put request to **<strong>BaseURL/products/associate/:id</strong>** :id being the product id with a JSON containing the following properties:
+- To associate a category to a product, send a put request to **<strong>BaseURL/products/associate/:id</strong>** :id being the product id with a JSON containing the following properties:
 
 ```
 {
