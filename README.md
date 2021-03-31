@@ -8,7 +8,7 @@
 
 ```yarn install```
 
-**You will need have a Postgres server setup so you can start the server. For this project I used:**
+**You will need to have a Postgres server setup so you can start the server. For this project I used:**
 
 ```
     port: 5432,
@@ -23,6 +23,12 @@ desafio_anotaai
 desafio_anotaai_test
 ```
 
+**Run migration**
+
+```yarn typeorm migration:run```
+
+PS.: Without running the migrations you will not be able to start the server.
+
 # 🚀 Scripts
 **Run server**
 
@@ -31,6 +37,7 @@ desafio_anotaai_test
 **Run tests**
 
 ```yarn test```
+
 
 # 🐛 Bugs or issues
 If you have any problems executing this project, please contact me here or at tuliosantos@gee.inatel.br
