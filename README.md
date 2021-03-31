@@ -38,6 +38,36 @@ PS.: Without running the migrations you will not be able to start the server.
 
 ```yarn test```
 
+# 🚩 Instructions
+
+Base URL for this project is **http://localhost:3333**. So every request should be sent to this address.
+
+- To create a product, send a post request to **BaseURL/products** with a JSON containing the following properties:
+
+```
+{
+  "title": "Some title",
+  "description": "Some description",
+  "price": any number
+}
+```
+
+- To create a category, send a post request to **BaseURL/categories** with a JSON containing the following properties:
+
+```
+{
+  "title": "Some title",
+}
+```
+-To associate a category to a product, send a put request to **BaseURL/products/associate/:id** :id being the product id with a JSON containing the following properties:
+
+```
+{
+  "category_id": "the category id"
+}
+```
+
+- To find a category or product by its name, send a get request to **BaseURL/{wanted}/search/title?title={name}** wanted being either categories or products and name, the title you are looking for.
 
 # 🐛 Bugs or issues
 If you have any problems executing this project, please contact me here or at tuliosantos@gee.inatel.br
