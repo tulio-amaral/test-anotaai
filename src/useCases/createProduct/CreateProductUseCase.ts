@@ -19,7 +19,7 @@ class CreateCategoryUseCase {
   async execute({ title, description, price }: Request): Promise<void> {
     
     if(!title || !description || !price) {
-      throw new AppError('Missing params. Make sure you are entering a title, description and price!')
+      throw new AppError('Missing params. Make sure you are entering a title, description and price!', 400)
     }
 
     const productAlreadyExists = await this.productsRepository.findByName(

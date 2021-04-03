@@ -11,8 +11,8 @@ class FindCategoryByTitleUseCase {
     private categoriesRepository: ICategoriesRepository,
   ) {}
 
-  async execute(title:string): Promise<Category[]> {
-    const category = await this.categoriesRepository.findByTitle(title);
+  async execute(name:string): Promise<Category[]> {
+    const category = await this.categoriesRepository.findByTitle(name);
 
     if(!category) {
       throw new AppError('Category not found');

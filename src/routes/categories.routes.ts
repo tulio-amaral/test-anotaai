@@ -9,6 +9,6 @@ const createCategoryController = new CreateCategoryController();
 const findCategoryByTitleController = new FindCategoryByTitleController()
 
 categoriesRoutes.post('/', createCategoryController.handle);
-categoriesRoutes.get('/search/:title', findCategoryByTitleController.handle);
+categoriesRoutes.get('/search/:name', findCategoryByTitleController.handle);
 
 export default categoriesRoutes;

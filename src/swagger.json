@@ -1,0 +1,455 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Teste Anota ai",
+    "description": "Teste para vaga de back-end junior",
+    "version": "1.0.0",
+    "contact": {
+    "email": "tuliosantos@gee.inatel.br"
+    }
+  },
+  "paths": {
+    "/products": {
+      "post": {
+        "tags": ["Product"],
+        "summary": "Create a product",
+        "description": "Create a new product",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                  "title": "Product title sample",
+                  "description": "Product description sample",
+                  "price": 10,
+                  "created_at": "2021-03-31T22:45:42.062Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                    "title": "Product title sample",
+                    "description": "Product description sample",
+                    "price": 10,
+                    "created_at": "2021-03-31T22:45:42.062Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing params. Make sure you are entering a title, description and price!"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Product"],
+        "summary": "List all products",
+        "description": "List all products",
+        "responses": {
+          "200": {
+            "description": "Success!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                      "title": "Product title sample",
+                      "description": "Product description sample",
+                      "price": 10,
+                      "created_at": "2021-03-31T22:45:42.062Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "error": "Internal Server Error"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/search/title": {
+      "get": {
+        "tags": ["Product"],
+        "summary": "Filter product by name",
+        "description": "Send a title or a part of a title to find products",
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "description": "Title to be filtered",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products filtered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "number"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                      "title": "Product title sample",
+                      "description": "Product description sample",
+                      "price": 10,
+                      "created_at": "2021-03-31T22:45:42.062Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    },
+    "/products/{id}": {
+      "delete": {
+        "tags": ["Product"],
+        "summary": "Delete a product",
+        "description": "Send the ID of a product to be deleted",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product deleted"
+          },
+          "400": {
+            "description": "Product not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Product"],
+        "summary": "Update a product's info",
+        "description": "Insert a valid ID and the new information",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product's ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }          
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                  "title": "New product title sample",
+                  "description": "New product description sample",
+                  "price": 10,
+                  "created_at": "2021-03-31T22:45:42.062Z"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Product information updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "price": {
+                      "type": "number"
+                    }
+                  },
+                  "example": {
+                    "id": "ed37feb4-2ccc-4c02-bd71-7a02baf06774",
+                    "title": "New product title sample",
+                    "description": "New product description sample",
+                    "price": 10,
+                    "created_at": "2021-03-31T22:45:42.062Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Product title already in use"
+          },
+          "404": {
+            "description": "Product not found"
+          }
+        }
+      }
+    },
+    "/products/associate/{id}": {
+      "put": {
+        "tags": ["Product"],
+        "summary": "Associate a product to a category",
+        "description": "Send the product ID and the category ID to be associated",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Product ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "category_id": {
+                    "type": "string",
+                    "format": "uuid"
+                  }
+                },
+                "example": {
+                  "category_id": "daddacc5-5afa-460f-a4e6-a7d92ebb58f7"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category associated to product"
+          },
+          "404": {
+            "description": "Product or category does not exist"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "post": {
+        "tags": ["Category"],
+        "summary": "Create category",
+        "description": "Create a new category",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Category name sample"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Category created!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "daddacc5-5afa-460f-a4e6-a7d92ebb58f7",
+                    "name": "Category name sample",
+                    "created_at": "2021-03-31T22:45:42.062Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Category already exist"
+          }
+        }
+      }
+    },
+    "/categories/search/name": {
+      "get": {
+        "tags": ["Category"],
+        "summary": "Filter categories by name",
+        "description": "Send a name or a part of a name to find categories",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Name to be filtered",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Categories filtered",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "format": "uuid"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "daddacc5-5afa-460f-a4e6-a7d92ebb58f7",
+                    "name": "Category name sample",
+                    "created_at": "2021-03-31T22:45:35.539Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "No category was found"
+          }
+        }
+      }
+    }
+  }
+}

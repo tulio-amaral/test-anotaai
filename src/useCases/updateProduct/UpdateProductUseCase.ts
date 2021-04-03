@@ -20,6 +20,10 @@ class UpdateCategoryUseCase {
   async execute({ id, title, description, price }: Request): Promise<void> {
     const product = await this.productsRepository.findByID(id);
 
+    if(!product) {
+      throw new AppError('Product not found!', 404);
+    }
+
     const productAlreadyExists = await this.productsRepository.findByName(
       title,
     );

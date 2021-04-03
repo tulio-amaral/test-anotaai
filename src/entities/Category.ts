@@ -8,7 +8,7 @@ class Category {
   id: string;
 
   @Column()
-  title: string;
+  name: string;
 
   @OneToMany(() => Product, product => product.category, { cascade:true })
   @JoinColumn({ name: 'category_id' })

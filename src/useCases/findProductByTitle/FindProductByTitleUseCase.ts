@@ -15,7 +15,7 @@ class ListCategoryUseCase {
     const product = await this.productsRepository.findByTitle(title);
 
     if(!product) {
-      throw new AppError('Product not found')
+      throw new AppError('Product not found', 404)
     }
 
     return product;

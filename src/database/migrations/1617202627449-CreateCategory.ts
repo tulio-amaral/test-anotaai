@@ -13,7 +13,7 @@ export class CreateCategory1617202627449 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: 'title',
+                        name: 'name',
                         type: 'varchar',
                     },
                     {

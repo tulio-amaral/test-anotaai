@@ -11,9 +11,9 @@ class CategoriesRepository implements ICategoriesRepository {
     this.repository = getRepository(Category);
   }
 
-  async create(title: string): Promise<void> {
+  async create(name: string): Promise<void> {
     const category = this.repository.create({
-      title,
+      name,
     });
 
     await this.repository.save(category);
@@ -29,15 +29,15 @@ class CategoriesRepository implements ICategoriesRepository {
     return category;
   }
 
-  async findByName(title: string): Promise<Category> {
-    const category = await this.repository.findOne({ title });
+  async findByName(name: string): Promise<Category> {
+    const category = await this.repository.findOne({ name });
 
     return category;
   }
 
-  async findByTitle(title: string): Promise<Category[]> {
+  async findByTitle(name: string): Promise<Category[]> {
     const categories = await this.repository.find({
-      where: `"title" ILIKE '%${title}%'`
+      where: `"name" ILIKE '%${name}%'`
     });
 
     if(!categories) {

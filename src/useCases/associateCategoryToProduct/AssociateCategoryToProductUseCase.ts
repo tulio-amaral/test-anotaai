@@ -27,6 +27,10 @@ class AssociateCategoryToProductUseCase {
 
     const category = await this.categoriesRepository.findByID(category_id);
 
+    if (!category) {
+      throw new AppError('Category does not exist!');
+    }
+
     product.category = category;
 
     this.productsRepository.save(product);

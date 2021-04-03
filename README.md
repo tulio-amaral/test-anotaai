@@ -1,3 +1,7 @@
+# 📕 Requirements
+
+**To see the requirements for this test, check Requirements.md**
+
 # 🔧 Installation
 
 **You will need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then in order to clone the project via HTTPS, run this command:**

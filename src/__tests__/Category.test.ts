@@ -18,7 +18,7 @@ describe('Tests for Categories', () => {
 
   it('Should be able to create a category', async() => {
     const response = await request(app).post('/categories').send({
-      title: 'Category Title',
+      name: 'Category Name',
     });
 
     expect(response.status).toBe(201);
